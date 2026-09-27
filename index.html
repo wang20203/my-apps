@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="自己开发的一些 Android 小工具，包含自动停车定位器、车耗管家、指南针">
+    <title>我的 App</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         "Microsoft YaHei", sans-serif;
+            background: #f5f7fa;
+            color: #222;
+            transition: background 0.3s, color 0.3s;
+        }
+        header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        header h1 {
+            margin: 0 0 15px;
+            font-size: 42px;
+        }
+        header p {
+            margin: 0;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .apps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .app-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s;
+        }
+        .app-card:hover{
+            transform: translateY(-4px);
+        }
+        .app-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+        .app-card h2 {
+            margin: 0 0 12px;
+        }
+        .app-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            margin-top: 10px;
+            outline: none;
+        }
+        .button:focus{
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.35);
+        }
+        .button:hover {
+            background: #3730a3;
+        }
+        .button.disabled{
+            background:#aaa;
+            cursor:not-allowed;
+            pointer-events:none;
+        }
+        footer {
+            text-align: center;
+            color: #888;
+            padding: 40px 20px;
+        }
+        /* 深色模式 */
+        @media (prefers-color-scheme: dark) {
+            body{
+                background:#121212;
+                color:#eee;
+            }
+            .app-card{
+                background:#1e1e1e;
+            }
+            .app-card p{
+                color:#bbb;
+            }
+        }
+        @media (max-width: 600px) {
+            header h1{
+                font-size:32px;
+            }
+            header{
+                padding:40px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>我的 App</h1>
+    <p>自己开发的一些 Android 小工具</p>
+</header>
+<div class="container">
+    <div class="apps">
+        <div class="app-card">
+            <div class="app-icon">🚗</div>
+            <h2>自动停车定位器</h2>
+            <p>
+                自动检测车辆蓝牙连接状态，
+                蓝牙断开后获取停车位置，
+                并通过步数判断是否已经离开车辆。
+            </p>
+            <a class="button disabled" href="javascript:void(0)">
+                即将上线
+            </a>
+        </div>
+        <div class="app-card">
+            <div class="app-icon">⛽</div>
+            <h2>车耗管家</h2>
+            <p>
+                记录加油数据，计算车辆油耗，
+                查看历史记录和统计信息，
+                简单实用的车辆油耗管理工具。
+            </p>
+            <a class="button" target="_blank"
+               href="https://wang20203.github.io/wangtest.github.io/">
+                查看官网
+            </a>
+        </div>
+        <div class="app-card">
+            <div class="app-icon">🧭</div>
+            <h2>指南针</h2>
+            <p>
+                显示实时方向、GPS位置和移动速度，
+                简单实用的方向与定位工具。
+            </p>
+            <a class="button disabled" href="javascript:void(0)">
+                即将上线
+            </a>
+        </div>
+    </div>
+</div>
+<footer>
+    © <span id="year">2026</span> 我的 App · GitHub
+</footer>
+<script>
+    // 自动更新年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
