@@ -3,169 +3,1172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="自己开发的一些 Android 小工具，包含自动停车定位器、车耗管家、指南针">
-    <title>我的 App</title>
+
+    <meta name="description"
+          content="我的 Android App 展示与下载网站，分享自己开发的实用小工具。">
+
+    <title>我的 App - Android 小工具</title>
+
     <style>
         * {
             box-sizing: border-box;
         }
+
         html {
             scroll-behavior: smooth;
         }
+
         body {
             margin: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                          "Microsoft YaHei", sans-serif;
-            background: #f5f7fa;
-            color: #222;
-            transition: background 0.3s, color 0.3s;
+            background: #f5f7fb;
+            color: #1f2937;
+            line-height: 1.6;
         }
-        header {
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
+
+        /* =========================
+           导航栏
+        ========================= */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid #e5e7eb;
         }
-        header h1 {
-            margin: 0 0 15px;
-            font-size: 42px;
-        }
-        header p {
-            margin: 0;
-            font-size: 18px;
-            opacity: 0.9;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 40px auto;
+
+        .nav-inner {
+            max-width: 1150px;
+            margin: 0 auto;
             padding: 0 20px;
+
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        .apps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        .logo {
+            font-size: 21px;
+            font-weight: 700;
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
             gap: 25px;
         }
+
+        .nav-links a {
+            color: #555;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+
+        /* =========================
+           Hero
+        ========================= */
+
+        .hero {
+            background:
+                radial-gradient(circle at top left,
+                rgba(124, 58, 237, 0.35),
+                transparent 35%),
+                linear-gradient(135deg, #4f46e5, #7c3aed);
+
+            color: white;
+            padding: 95px 20px 105px;
+        }
+
+        .hero-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            padding: 7px 14px;
+            margin-bottom: 20px;
+
+            border-radius: 999px;
+
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            margin: 0 0 18px;
+
+            font-size: 52px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: 0 auto;
+
+            font-size: 19px;
+            opacity: 0.92;
+        }
+
+        .hero-buttons {
+            margin-top: 32px;
+
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+
+            flex-wrap: wrap;
+        }
+
+        .hero-button {
+            display: inline-block;
+
+            padding: 13px 24px;
+
+            border-radius: 11px;
+
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .hero-button.primary {
+            background: white;
+            color: #4f46e5;
+        }
+
+        .hero-button.secondary {
+            background: rgba(255,255,255,0.12);
+            color: white;
+
+            border: 1px solid rgba(255,255,255,0.35);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           数据区域
+        ========================= */
+
+        .stats {
+            max-width: 1000px;
+
+            margin: -42px auto 0;
+
+            padding: 0 20px;
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .stats-inner {
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 24px;
+
+            box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           通用容器
+        ========================= */
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            margin: 0 0 10px;
+
+            font-size: 34px;
+        }
+
+        .section-header p {
+            margin: 0;
+
+            color: #777;
+        }
+
+        /* =========================
+           App 卡片
+        ========================= */
+
+        .apps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(290px, 1fr));
+
+            gap: 25px;
+        }
+
         .app-card {
             background: white;
-            border-radius: 18px;
+
+            border-radius: 20px;
+
             padding: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s;
+
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+
+            border: 1px solid #edf0f5;
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
         }
-        .app-card:hover{
-            transform: translateY(-4px);
+
+        .app-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 16px 40px rgba(0,0,0,0.10);
         }
+
         .app-icon {
-            font-size: 55px;
-            margin-bottom: 15px;
+            width: 72px;
+            height: 72px;
+
+            border-radius: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 40px;
+
+            margin-bottom: 22px;
+
+            background: #f1f3ff;
         }
-        .app-card h2 {
-            margin: 0 0 12px;
+
+        .app-card h3 {
+            margin: 0 0 10px;
+
+            font-size: 23px;
         }
+
         .app-card p {
+            margin: 0 0 22px;
+
             color: #666;
-            line-height: 1.7;
+
+            line-height: 1.8;
+
+            min-height: 88px;
         }
-        .button {
+
+        .app-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+
+            border-radius: 999px;
+
+            background: #f3f4f6;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+        .card-button {
             display: inline-block;
-            padding: 12px 20px;
+
+            padding: 11px 18px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
             background: #4f46e5;
             color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            margin-top: 10px;
-            outline: none;
+
+            font-weight: 600;
         }
-        .button:focus{
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.35);
-        }
-        .button:hover {
+
+        .card-button:hover {
             background: #3730a3;
         }
-        .button.disabled{
-            background:#aaa;
-            cursor:not-allowed;
-            pointer-events:none;
+
+        .card-button.disabled {
+            background: #aaa;
+            cursor: default;
+            pointer-events: none;
         }
-        footer {
+
+        /* =========================
+           网站特点
+        ========================= */
+
+        .features-section {
+            background: white;
+        }
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(230px, 1fr));
+
+            gap: 20px;
+        }
+
+        .feature {
+            padding: 26px;
+
+            border-radius: 16px;
+
+            background: #f8f9fd;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            margin: 0 0 8px;
+        }
+
+        .feature p {
+            margin: 0;
+
+            color: #707070;
+            font-size: 14px;
+        }
+
+        /* =========================
+           开发计划
+        ========================= */
+
+        .roadmap {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .roadmap-item {
+            display: flex;
+
+            gap: 18px;
+
+            padding: 20px 0;
+
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .roadmap-item:last-child {
+            border-bottom: none;
+        }
+
+        .roadmap-dot {
+            width: 14px;
+            height: 14px;
+
+            margin-top: 8px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #4f46e5;
+        }
+
+        .roadmap-content h3 {
+            margin: 0 0 5px;
+        }
+
+        .roadmap-content p {
+            margin: 0;
+
+            color: #777;
+        }
+
+        /* =========================
+           关于本站
+        ========================= */
+
+        .about {
+            max-width: 850px;
+            margin: 0 auto;
+
             text-align: center;
-            color: #888;
-            padding: 40px 20px;
         }
-        /* 深色模式 */
+
+        .about p {
+            color: #666;
+
+            line-height: 1.9;
+
+            font-size: 16px;
+        }
+
+        .github-button {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 12px 22px;
+
+            border-radius: 10px;
+
+            background: #111827;
+            color: white;
+
+            text-decoration: none;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            background: #111827;
+
+            color: #aaa;
+
+            text-align: center;
+
+            padding: 45px 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        footer a {
+            color: #c7d2fe;
+
+            text-decoration: none;
+        }
+
+        /* =========================
+           深色模式
+        ========================= */
+
         @media (prefers-color-scheme: dark) {
-            body{
-                background:#121212;
-                color:#eee;
+
+            body {
+                background: #111827;
+                color: #eee;
             }
-            .app-card{
-                background:#1e1e1e;
+
+            .navbar {
+                background: rgba(17,24,39,0.92);
+                border-color: #374151;
             }
-            .app-card p{
-                color:#bbb;
+
+            .nav-links a {
+                color: #bbb;
+            }
+
+            .nav-links a:hover {
+                color: #a5b4fc;
+            }
+
+            .stats-inner,
+            .app-card {
+                background: #1f2937;
+                border-color: #374151;
+            }
+
+            .stat-label,
+            .section-header p {
+                color: #aaa;
+            }
+
+            .app-card p,
+            .feature p,
+            .roadmap-content p,
+            .about p {
+                color: #b7b7b7;
+            }
+
+            .tag {
+                background: #374151;
+                color: #ccc;
+            }
+
+            .app-icon,
+            .feature {
+                background: #283248;
+            }
+
+            .roadmap-item {
+                border-color: #374151;
+            }
+
+            .features-section {
+                background: #172033;
             }
         }
-        @media (max-width: 600px) {
-            header h1{
-                font-size:32px;
+
+        /* =========================
+           手机适配
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .nav-inner {
+                height: auto;
+
+                padding-top: 14px;
+                padding-bottom: 14px;
             }
-            header{
-                padding:40px 16px;
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a:nth-child(2) {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 18px 85px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .stats-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            .section-header h2 {
+                font-size: 29px;
+            }
+
+            .app-card {
+                padding: 25px;
             }
         }
     </style>
 </head>
+
 <body>
-<header>
-    <h1>我的 App</h1>
-    <p>自己开发的一些 Android 小工具</p>
-</header>
-<div class="container">
-    <div class="apps">
-        <div class="app-card">
-            <div class="app-icon">🚗</div>
-            <h2>自动停车定位器</h2>
-            <p>
-                自动检测车辆蓝牙连接状态，
-                蓝牙断开后获取停车位置，
-                并通过步数判断是否已经离开车辆。
-            </p>
-<a class="button" href="AutoParking.html">
-    查看详情
-</a>
-        </div>
-        <div class="app-card">
-            <div class="app-icon">⛽</div>
-            <h2>车耗管家</h2>
-            <p>
-                记录加油数据，计算车辆油耗，
-                查看历史记录和统计信息，
-                简单实用的车辆油耗管理工具。
-            </p>
-            <a class="button" target="_blank"
-               href="https://wang20203.github.io/wangtest.github.io/">
-                查看官网
+
+<!-- =========================
+     导航栏
+========================= -->
+
+<nav class="navbar">
+
+    <div class="nav-inner">
+
+        <a href="index.html" class="logo">
+            我的 App
+        </a>
+
+        <div class="nav-links">
+
+            <a href="#apps">
+                我的 App
             </a>
-        </div>
-        <div class="app-card">
-            <div class="app-icon">🧭</div>
-            <h2>指南针</h2>
-            <p>
-                显示实时方向、GPS位置和移动速度，
-                简单实用的方向与定位工具。
-            </p>
-            <a class="button disabled" href="javascript:void(0)">
-                即将上线
+
+            <a href="#features">
+                网站特点
             </a>
+
+            <a href="#roadmap">
+                开发计划
+            </a>
+
+            <a href="#about">
+                关于
+            </a>
+
         </div>
+
     </div>
+
+</nav>
+
+
+<!-- =========================
+     Hero
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="hero-badge">
+            Android 小工具 · 持续更新
+        </div>
+
+        <h1>
+            我的 App
+        </h1>
+
+        <p>
+            这里记录和分享我自己开发的一些 Android 小工具，
+            简单、实用，也会持续加入新的项目。
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#apps"
+               class="hero-button primary">
+                查看 App
+            </a>
+
+            <a href="#about"
+               class="hero-button secondary">
+                了解本站
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     数据
+========================= -->
+
+<div class="stats">
+
+    <div class="stats-inner">
+
+        <div>
+            <div class="stat-number">
+                3
+            </div>
+
+            <div class="stat-label">
+                App 项目
+            </div>
+        </div>
+
+
+        <div>
+            <div class="stat-number">
+                Android
+            </div>
+
+            <div class="stat-label">
+                主要平台
+            </div>
+        </div>
+
+
+        <div>
+            <div class="stat-number">
+                GitHub
+            </div>
+
+            <div class="stat-label">
+                网站与下载平台
+            </div>
+        </div>
+
+    </div>
+
 </div>
+
+
+<!-- =========================
+     App
+========================= -->
+
+<section id="apps">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>
+                我的 App
+            </h2>
+
+            <p>
+                目前已经完成和正在开发中的项目
+            </p>
+
+        </div>
+
+
+        <div class="apps">
+
+            <!-- 自动停车定位器 -->
+
+            <div class="app-card">
+
+                <div class="app-icon">
+                    🚗
+                </div>
+
+                <h3>
+                    自动停车定位器
+                </h3>
+
+                <p>
+                    自动检测车辆蓝牙连接状态，
+                    蓝牙断开后获取停车位置，
+                    并通过步数判断是否已经离开车辆。
+                </p>
+
+                <div class="app-tags">
+
+                    <span class="tag">
+                        Android
+                    </span>
+
+                    <span class="tag">
+                        GPS
+                    </span>
+
+                    <span class="tag">
+                        蓝牙
+                    </span>
+
+                    <span class="tag">
+                        停车定位
+                    </span>
+
+                </div>
+
+                <a href="AutoParking.html"
+                   class="card-button">
+                    查看详情
+                </a>
+
+            </div>
+
+
+            <!-- 车耗管家 -->
+
+            <div class="app-card">
+
+                <div class="app-icon">
+                    ⛽
+                </div>
+
+                <h3>
+                    车耗管家
+                </h3>
+
+                <p>
+                    记录车辆加油数据，
+                    计算油耗并查看历史统计，
+                    帮助了解车辆的实际使用成本。
+                </p>
+
+                <div class="app-tags">
+
+                    <span class="tag">
+                        Android
+                    </span>
+
+                    <span class="tag">
+                        油耗
+                    </span>
+
+                    <span class="tag">
+                        车辆管理
+                    </span>
+
+                </div>
+
+                <a href="https://wang20203.github.io/wangtest.github.io/"
+                   target="_blank"
+                   class="card-button">
+                    查看官网
+                </a>
+
+            </div>
+
+
+            <!-- 指南针 -->
+
+            <div class="app-card">
+
+                <div class="app-icon">
+                    🧭
+                </div>
+
+                <h3>
+                    指南针
+                </h3>
+
+                <p>
+                    正在开发中的方向工具，
+                    计划显示实时方向、GPS 位置以及移动速度。
+                </p>
+
+                <div class="app-tags">
+
+                    <span class="tag">
+                        Android
+                    </span>
+
+                    <span class="tag">
+                        GPS
+                    </span>
+
+                    <span class="tag">
+                        指南针
+                    </span>
+
+                </div>
+
+                <a href="#"
+                   class="card-button disabled">
+                    开发中
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     网站特点
+========================= -->
+
+<section id="features"
+         class="features-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>
+                网站特点
+            </h2>
+
+            <p>
+                一个简单的个人 App 发布空间
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📦
+                </div>
+
+                <h3>
+                    直接下载
+                </h3>
+
+                <p>
+                    App 使用 APK 文件发布，
+                    下载后可以直接安装到 Android 手机。
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔄
+                </div>
+
+                <h3>
+                    持续更新
+                </h3>
+
+                <p>
+                    新版本发布后，
+                    网站可以同步更新下载文件和更新说明。
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🌐
+                </div>
+
+                <h3>
+                    免费托管
+                </h3>
+
+                <p>
+                    网站使用 GitHub Pages，
+                    不需要单独购买服务器。
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🛠️
+                </div>
+
+                <h3>
+                    自己开发
+                </h3>
+
+                <p>
+                    这里展示的 App 都是自己学习和开发的项目。
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     开发计划
+========================= -->
+
+<section id="roadmap">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>
+                开发计划
+            </h2>
+
+            <p>
+                一点一点完善自己的 App
+            </p>
+
+        </div>
+
+
+        <div class="roadmap">
+
+            <div class="roadmap-item">
+
+                <div class="roadmap-dot"></div>
+
+                <div class="roadmap-content">
+
+                    <h3>
+                        🚗 自动停车定位器
+                    </h3>
+
+                    <p>
+                        已完成基础版本，
+                        支持蓝牙、GPS、停车位置记录和导航。
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="roadmap-item">
+
+                <div class="roadmap-dot"></div>
+
+                <div class="roadmap-content">
+
+                    <h3>
+                        ⛽ 车耗管家
+                    </h3>
+
+                    <p>
+                        已完成并拥有独立的网站。
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="roadmap-item">
+
+                <div class="roadmap-dot"></div>
+
+                <div class="roadmap-content">
+
+                    <h3>
+                        🧭 指南针
+                    </h3>
+
+                    <p>
+                        正在开发，
+                        计划加入方向、GPS 和速度显示。
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="roadmap-item">
+
+                <div class="roadmap-dot"></div>
+
+                <div class="roadmap-content">
+
+                    <h3>
+                        📱 更多小工具
+                    </h3>
+
+                    <p>
+                        以后继续开发更多自己需要或者觉得有用的小工具。
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     关于本站
+========================= -->
+
+<section id="about"
+         class="features-section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2>
+                关于本站
+            </h2>
+
+        </div>
+
+
+        <div class="about">
+
+            <p>
+                这是一个个人 App 展示与下载网站，
+                主要用于记录自己开发的 Android 小工具。
+            </p>
+
+            <p>
+                目前网站使用 GitHub Pages 搭建，
+                App 安装包通过 GitHub 进行发布和更新。
+            </p>
+
+            <a href="https://github.com/wang20203"
+               target="_blank"
+               class="github-button">
+                查看我的 GitHub
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     Footer
+========================= -->
+
 <footer>
-    © <span id="year">2026</span> 我的 App · GitHub
+
+    <p>
+        <strong>我的 App</strong>
+    </p>
+
+    <p>
+        自己开发 · 持续更新
+    </p>
+
+    <p>
+        © <span id="year">2026</span>
+        · Hosted by GitHub Pages
+    </p>
+
 </footer>
+
+
 <script>
+
     // 自动更新年份
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
 </script>
+
 </body>
 </html>
