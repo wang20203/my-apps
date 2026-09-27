@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="自动停车定位器 Android App，自动检测车辆蓝牙断开，获取停车位置，并通过步数判断是否已经离开车辆。">
+
+    <title>自动停车定位器 - 我的 App</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                         "Microsoft YaHei", sans-serif;
+            background: #f5f7fa;
+            color: #222;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* 顶部 */
+        header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .app-big-icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            margin: 0 0 15px;
+            font-size: 42px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 18px;
+            opacity: 0.92;
+        }
+
+        /* 主体 */
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* 版本信息 */
+        .version-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .version-item {
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 10px 16px;
+            color: #555;
+        }
+
+        /* 功能列表 */
+        .feature-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        /* 使用步骤 */
+        .steps {
+            counter-reset: step;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .steps li {
+            position: relative;
+            padding: 15px 0 15px 50px;
+            line-height: 1.7;
+        }
+
+        .steps li::before {
+            counter-increment: step;
+            content: counter(step);
+
+            position: absolute;
+            left: 0;
+            top: 12px;
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: #4f46e5;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        /* 下载区域 */
+        .download-card {
+            text-align: center;
+        }
+
+        .download-card p {
+            margin-bottom: 25px;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 14px 28px;
+
+            background: #4f46e5;
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 12px;
+
+            font-size: 17px;
+            font-weight: 600;
+
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .download-button:hover {
+            background: #3730a3;
+            transform: translateY(-2px);
+        }
+
+        .home-button {
+            display: inline-block;
+            margin-top: 15px;
+
+            padding: 11px 22px;
+
+            background: transparent;
+            color: #4f46e5;
+
+            border: 2px solid #4f46e5;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .home-button:hover {
+            background: #4f46e5;
+            color: white;
+        }
+
+        /* 更新记录 */
+        .update-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .update-item:last-child {
+            border-bottom: none;
+        }
+
+        .update-date {
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 5px;
+        }
+
+        .update-text {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* 注意事项 */
+        .notice {
+            background: #f8f8ff;
+            border-left: 4px solid #4f46e5;
+            padding: 15px 18px;
+            border-radius: 8px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* 底部 */
+        footer {
+            text-align: center;
+            color: #888;
+            padding: 40px 20px;
+        }
+
+        /* 深色模式 */
+        @media (prefers-color-scheme: dark) {
+
+            body {
+                background: #121212;
+                color: #eee;
+            }
+
+            .card {
+                background: #1e1e1e;
+            }
+
+            .card p {
+                color: #bbb;
+            }
+
+            .feature-list li {
+                border-color: #333;
+            }
+
+            .version-item {
+                background: #2a2a2a;
+                color: #ccc;
+            }
+
+            .update-item {
+                border-color: #333;
+            }
+
+            .update-text {
+                color: #bbb;
+            }
+
+            .notice {
+                background: #252535;
+                color: #bbb;
+            }
+        }
+
+        /* 手机适配 */
+        @media (max-width: 600px) {
+
+            header {
+                padding: 45px 16px;
+            }
+
+            .app-big-icon {
+                font-size: 65px;
+            }
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            .container {
+                margin: 25px auto;
+                padding: 0 15px;
+            }
+
+            .card {
+                padding: 22px;
+                border-radius: 15px;
+            }
+
+            .card h2 {
+                font-size: 23px;
+            }
+
+            .download-button {
+                width: 100%;
+                padding: 14px 20px;
+            }
+
+            .home-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="app-big-icon">🚗</div>
+
+    <h1>自动停车定位器</h1>
+
+    <p>
+        自动记录停车位置，让找车更加简单
+    </p>
+
+</header>
+
+
+<div class="container">
+
+    <!-- App 简介 -->
+    <div class="card">
+
+        <h2>App 简介</h2>
+
+        <p>
+            自动停车定位器是一款简单实用的 Android 小工具。
+            它可以检测手机与车辆之间的蓝牙连接状态，
+            当车辆蓝牙断开后自动开始获取位置，
+            并结合手机的运动步数判断是否已经离开车辆。
+        </p>
+
+        <p>
+            当停车位置确认后，App 会保存停车位置，
+            方便之后快速查看车辆停在哪里，并可以使用地图进行导航。
+        </p>
+
+        <div class="version-box">
+
+            <div class="version-item">
+                当前版本：1.0
+            </div>
+
+            <div class="version-item">
+                Android App
+            </div>
+
+            <div class="version-item">
+                APK
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 主要功能 -->
+    <div class="card">
+
+        <h2>主要功能</h2>
+
+        <ul class="feature-list">
+
+            <li>
+                自动检测车辆蓝牙连接状态
+            </li>
+
+            <li>
+                蓝牙断开后自动获取停车位置
+            </li>
+
+            <li>
+                通过手机运动步数判断是否已经离开车辆
+            </li>
+
+            <li>
+                确认停车后保存停车位置
+            </li>
+
+            <li>
+                查看已经保存的停车位置
+            </li>
+
+            <li>
+                保存历史停车记录
+            </li>
+
+            <li>
+                支持调用地图进行停车位置导航
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- 使用方法 -->
+    <div class="card">
+
+        <h2>使用方法</h2>
+
+        <ol class="steps">
+
+            <li>
+                正常使用车辆，并让手机保持与车辆蓝牙连接。
+            </li>
+
+            <li>
+                停车并离开车辆后，车辆蓝牙连接断开。
+            </li>
+
+            <li>
+                App 自动获取当前位置，并开始检测手机移动情况。
+            </li>
+
+            <li>
+                当检测到已经离开车辆达到设定条件后，
+                自动确认停车位置。
+            </li>
+
+            <li>
+                停车位置保存后，可以打开 App 查看停车位置。
+            </li>
+
+            <li>
+                需要找车时，可以调用地图导航到之前保存的停车位置。
+            </li>
+
+        </ol>
+
+    </div>
+
+
+    <!-- 下载 -->
+    <div class="card download-card">
+
+        <h2>下载 App</h2>
+
+        <p>
+            下载最新版本的 Android APK。
+        </p>
+
+        <a class="download-button"
+           href="AutoParking.apk">
+            ⬇ 下载 APK
+        </a>
+
+        <br>
+
+        <a class="home-button"
+           href="index.html">
+            ← 返回 App 首页
+        </a>
+
+    </div>
+
+
+    <!-- 注意事项 -->
+    <div class="card">
+
+        <h2>使用说明</h2>
+
+        <div class="notice">
+
+            为了正常使用自动停车定位功能，
+            请根据手机系统要求授予 App 必要的蓝牙、
+            定位和运动活动等相关权限。
+
+            <br><br>
+
+            不同 Android 手机厂商的后台管理策略可能不同。
+            如果发现 App 在后台无法正常运行，
+            可以检查系统的电池优化、后台运行和定位权限设置。
+
+        </div>
+
+    </div>
+
+
+    <!-- 更新记录 -->
+    <div class="card">
+
+        <h2>更新记录</h2>
+
+        <div class="update-item">
+
+            <div class="update-date">
+                2026-09-27
+            </div>
+
+            <div class="update-text">
+                发布首个版本。
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+
+    © <span id="year">2026</span> 我的 App · GitHub
+
+</footer>
+
+
+<script>
+
+    // 自动更新年份
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
