@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-          content="我的 Android App 展示与下载网站，分享自己开发的实用小工具。">
+          content="wang20203 - independent Android developer. Open source projects, tech notes and software works in Android, GPS, Bluetooth and Accessibility.">
 
-    <title>我的 App - Android 小工具</title>
+    <title>wang20203 · Android Developer</title>
 
     <style>
         * {
@@ -233,7 +233,7 @@
         }
 
         /* =========================
-           App 卡片
+           项目卡片
         ========================= */
 
         .apps {
@@ -347,7 +347,7 @@
         }
 
         /* =========================
-           网站特点
+           技术栈
         ========================= */
 
         .features-section {
@@ -389,7 +389,7 @@
         }
 
         /* =========================
-           开发计划
+           开发路线
         ========================= */
 
         .roadmap {
@@ -435,7 +435,7 @@
         }
 
         /* =========================
-           关于本站
+           关于我
         ========================= */
 
         .about {
@@ -617,25 +617,21 @@
     <div class="nav-inner">
 
         <a href="index.html" class="logo">
-            我的 App
+            wang20203.dev
         </a>
 
         <div class="nav-links">
 
-            <a href="#apps">
-                我的 App
+            <a href="#projects">
+                项目
             </a>
 
-            <a href="#features">
-                网站特点
-            </a>
-
-            <a href="#roadmap">
-                开发计划
+            <a href="#skills">
+                技术栈
             </a>
 
             <a href="#about">
-                关于
+                关于我
             </a>
 
         </div>
@@ -654,28 +650,30 @@
     <div class="hero-inner">
 
         <div class="hero-badge">
-            Android 小工具 · 持续更新
+            Android Developer · Open Source
         </div>
 
         <h1>
-            我的 App
+            wang20203
         </h1>
 
         <p>
-            这里记录和分享我自己开发的一些 Android 小工具，
-            简单、实用，也会持续加入新的项目。
+            独立 Android 软件开发者，专注于原生 Android 应用开发、
+            GPS 定位、蓝牙通信与无障碍服务。
+            本站用于汇总个人开源项目、技术实践与软件作品。
         </p>
 
         <div class="hero-buttons">
 
-            <a href="#apps"
+            <a href="#projects"
                class="hero-button primary">
-                查看 App
+                查看项目
             </a>
 
-            <a href="#about"
+            <a href="https://github.com/wang20203"
+               target="_blank"
                class="hero-button secondary">
-                了解本站
+                GitHub 主页
             </a>
 
         </div>
@@ -695,11 +693,11 @@
 
         <div>
             <div class="stat-number">
-                3
+                3+
             </div>
 
             <div class="stat-label">
-                App 项目
+                开源项目
             </div>
         </div>
 
@@ -710,18 +708,18 @@
             </div>
 
             <div class="stat-label">
-                主要平台
+                主要技术方向
             </div>
         </div>
 
 
         <div>
             <div class="stat-number">
-                GitHub
+                Kotlin
             </div>
 
             <div class="stat-label">
-                网站与下载平台
+                主要开发语言
             </div>
         </div>
 
@@ -731,21 +729,21 @@
 
 
 <!-- =========================
-     App
+     项目
 ========================= -->
 
-<section id="apps">
+<section id="projects">
 
     <div class="container">
 
         <div class="section-header">
 
             <h2>
-                我的 App
+                开源项目 &amp; 软件作品
             </h2>
 
             <p>
-                目前已经完成和正在开发中的项目
+                个人开发的 Android 应用与工具项目
             </p>
 
         </div>
@@ -753,7 +751,7 @@
 
         <div class="apps">
 
-            <!-- 自动停车定位器 -->
+            <!-- AutoParking -->
 
             <div class="app-card">
 
@@ -762,13 +760,13 @@
                 </div>
 
                 <h3>
-                    自动停车定位器
+                    AutoParking · 自动停车定位器
                 </h3>
 
                 <p>
-                    自动检测车辆蓝牙连接状态，
-                    蓝牙断开后获取停车位置，
-                    并通过步数判断是否已经离开车辆。
+                    原生 Android 应用，通过蓝牙连接状态检测车辆熄火事件，
+                    结合 GPS 与加速度传感器自动记录停车位置，
+                    并提供步行导航返回车位。
                 </p>
 
                 <div class="app-tags">
@@ -778,28 +776,28 @@
                     </span>
 
                     <span class="tag">
+                        Kotlin
+                    </span>
+
+                    <span class="tag">
                         GPS
                     </span>
 
                     <span class="tag">
-                        蓝牙
-                    </span>
-
-                    <span class="tag">
-                        停车定位
+                        Bluetooth
                     </span>
 
                 </div>
 
                 <a href="AutoParking.html"
                    class="card-button">
-                    查看详情
+                    项目详情
                 </a>
 
             </div>
 
 
-            <!-- 车耗管家 -->
+            <!-- FuelTracker / 车耗管家 -->
 
             <div class="app-card">
 
@@ -808,13 +806,13 @@
                 </div>
 
                 <h3>
-                    车耗管家
+                    FuelTracker · 车耗管家
                 </h3>
 
                 <p>
-                    记录车辆加油数据，
-                    计算油耗并查看历史统计，
-                    帮助了解车辆的实际使用成本。
+                    非商业车辆油耗与保养追踪应用，
+                    支持加油记录、油耗统计、行驶里程分析与保养提醒，
+                    已部署独立 Web 版本。
                 </p>
 
                 <div class="app-tags">
@@ -824,11 +822,11 @@
                     </span>
 
                     <span class="tag">
-                        油耗
+                        Web App
                     </span>
 
                     <span class="tag">
-                        车辆管理
+                        Data Viz
                     </span>
 
                 </div>
@@ -836,13 +834,13 @@
                 <a href="https://wang20203.github.io/wangtest.github.io/"
                    target="_blank"
                    class="card-button">
-                    查看官网
+                    在线体验
                 </a>
 
             </div>
 
 
-            <!-- 指南针 -->
+            <!-- Compass -->
 
             <div class="app-card">
 
@@ -851,12 +849,13 @@
                 </div>
 
                 <h3>
-                    指南针
+                    Compass · 指南针
                 </h3>
 
                 <p>
-                    正在开发中的方向工具，
-                    计划显示实时方向、GPS 位置以及移动速度。
+                    正在开发中的 Android 方向工具，
+                    计划集成电子罗盘、GPS 定位、
+                    行驶速度显示与海拔信息。
                 </p>
 
                 <div class="app-tags">
@@ -866,11 +865,11 @@
                     </span>
 
                     <span class="tag">
-                        GPS
+                        Sensor
                     </span>
 
                     <span class="tag">
-                        指南针
+                        GPS
                     </span>
 
                 </div>
@@ -890,10 +889,10 @@
 
 
 <!-- =========================
-     网站特点
+     技术栈
 ========================= -->
 
-<section id="features"
+<section id="skills"
          class="features-section">
 
     <div class="container">
@@ -901,11 +900,11 @@
         <div class="section-header">
 
             <h2>
-                网站特点
+                技术栈
             </h2>
 
             <p>
-                一个简单的个人 App 发布空间
+                开发中使用的主要技术与工具
             </p>
 
         </div>
@@ -916,16 +915,15 @@
             <div class="feature">
 
                 <div class="feature-icon">
-                    📦
+                    📱
                 </div>
 
                 <h3>
-                    直接下载
+                    Android 原生开发
                 </h3>
 
                 <p>
-                    App 使用 APK 文件发布，
-                    下载后可以直接安装到 Android 手机。
+                    Kotlin / Java、Android SDK、Jetpack Compose、Material Design
                 </p>
 
             </div>
@@ -934,16 +932,32 @@
             <div class="feature">
 
                 <div class="feature-icon">
-                    🔄
+                    📍
                 </div>
 
                 <h3>
-                    持续更新
+                    位置与传感器
                 </h3>
 
                 <p>
-                    新版本发布后，
-                    网站可以同步更新下载文件和更新说明。
+                    GPS / LocationManager、蓝牙 BLE、加速度计、电子罗盘、步频检测
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ♿
+                </div>
+
+                <h3>
+                    系统服务
+                </h3>
+
+                <p>
+                    Accessibility Service、前台服务、BroadcastReceiver、WorkManager
                 </p>
 
             </div>
@@ -956,29 +970,11 @@
                 </div>
 
                 <h3>
-                    免费托管
+                    Web 与部署
                 </h3>
 
                 <p>
-                    网站使用 GitHub Pages，
-                    不需要单独购买服务器。
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🛠️
-                </div>
-
-                <h3>
-                    自己开发
-                </h3>
-
-                <p>
-                    这里展示的 App 都是自己学习和开发的项目。
+                    HTML / CSS / JavaScript、GitHub Pages、自定义域名、DNS 配置
                 </p>
 
             </div>
@@ -991,7 +987,7 @@
 
 
 <!-- =========================
-     开发计划
+     开发路线
 ========================= -->
 
 <section id="roadmap">
@@ -1001,11 +997,11 @@
         <div class="section-header">
 
             <h2>
-                开发计划
+                开发路线
             </h2>
 
             <p>
-                一点一点完善自己的 App
+                正在推进与规划中的项目
             </p>
 
         </div>
@@ -1020,12 +1016,11 @@
                 <div class="roadmap-content">
 
                     <h3>
-                        🚗 自动停车定位器
+                        🚗 AutoParking
                     </h3>
 
                     <p>
-                        已完成基础版本，
-                        支持蓝牙、GPS、停车位置记录和导航。
+                        已完成基础版本，支持蓝牙连接检测、GPS 停车位置记录与步行导航。
                     </p>
 
                 </div>
@@ -1040,11 +1035,11 @@
                 <div class="roadmap-content">
 
                     <h3>
-                        ⛽ 车耗管家
+                        ⛽ FuelTracker
                     </h3>
 
                     <p>
-                        已完成并拥有独立的网站。
+                        已完成 Android 端与 Web 版本，持续优化数据统计与可视化。
                     </p>
 
                 </div>
@@ -1059,12 +1054,11 @@
                 <div class="roadmap-content">
 
                     <h3>
-                        🧭 指南针
+                        🧭 Compass
                     </h3>
 
                     <p>
-                        正在开发，
-                        计划加入方向、GPS 和速度显示。
+                        正在开发，计划加入电子罗盘、GPS 位置与速度显示。
                     </p>
 
                 </div>
@@ -1079,11 +1073,11 @@
                 <div class="roadmap-content">
 
                     <h3>
-                        📱 更多小工具
+                        🛠️ 更多工具
                     </h3>
 
                     <p>
-                        以后继续开发更多自己需要或者觉得有用的小工具。
+                        持续开发解决日常生活实际问题的小型 Android 工具。
                     </p>
 
                 </div>
@@ -1098,7 +1092,7 @@
 
 
 <!-- =========================
-     关于本站
+     关于我
 ========================= -->
 
 <section id="about"
@@ -1109,7 +1103,7 @@
         <div class="section-header">
 
             <h2>
-                关于本站
+                关于我
             </h2>
 
         </div>
@@ -1118,19 +1112,20 @@
         <div class="about">
 
             <p>
-                这是一个个人 App 展示与下载网站，
-                主要用于记录自己开发的 Android 小工具。
+                我是一名独立 Android 开发者，专注于用手机解决日常生活中的实际问题。
+                这个站点托管在 GitHub Pages 上，
+                用来汇总我的开源项目、技术实践与软件作品。
             </p>
 
             <p>
-                目前网站使用 GitHub Pages 搭建，
-                App 安装包通过 GitHub 进行发布和更新。
+                所有项目均为个人学习与实践产物，
+                欢迎在 GitHub 上交流。
             </p>
 
             <a href="https://github.com/wang20203"
                target="_blank"
                class="github-button">
-                查看我的 GitHub
+                GitHub: @wang20203
             </a>
 
         </div>
@@ -1147,11 +1142,11 @@
 <footer>
 
     <p>
-        <strong>我的 App</strong>
+        <strong>wang20203 · Android Developer</strong>
     </p>
 
     <p>
-        自己开发 · 持续更新
+        Open Source · Self-hosted on GitHub Pages
     </p>
 
     <p>
